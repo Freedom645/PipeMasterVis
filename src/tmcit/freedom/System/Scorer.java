@@ -43,8 +43,8 @@ public class Scorer {
 			for(int j = 1; j < 31; j++){
 				if(this.board[i][j].getEvent() == 1){//Search Start
 					for(int k = 0; k < 4; k++){
-						int nextX = FourBit.dirX[k] + j;
-						int nextY = FourBit.dirY[k] + i;
+						int nextX = Main.dirX[k] + j;
+						int nextY = Main.dirY[k] + i;
 						int tmpScore = saiki(nextX, nextY, k);
 						if(tmpScore == -1)continue;
 						this.score += tmpScore;
@@ -65,8 +65,8 @@ public class Scorer {
 		int nextB = board[y][x].getNext(before);
 		if(nextB == -1)return -1;//Next Pipe is Not Segment.
 
-		int nextX = FourBit.dirX[nextB] + x;
-		int nextY = FourBit.dirY[nextB] + y;
+		int nextX = Main.dirX[nextB] + x;
+		int nextY = Main.dirY[nextB] + y;
 
 		int tmpScore = this.saiki(nextX, nextY, nextB);
 		if(tmpScore == -1)return -1;

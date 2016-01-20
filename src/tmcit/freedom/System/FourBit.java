@@ -4,10 +4,7 @@ import tmcit.freedom.Util.PipeType;
 
 
 public class FourBit {
-	//0:U 1:D 2:L 3:R
-	final public static int[] dirX = {0, 0, -1, 1};
-	final public static int[] dirY = {-1, 1, 0, 0};
-	
+
 	public static int rebirth(int before){
 		if(before == 0)return 1;
 		if(before == 1)return 0;

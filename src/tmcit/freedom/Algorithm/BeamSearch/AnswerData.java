@@ -3,13 +3,13 @@ package tmcit.freedom.Algorithm.BeamSearch;
 import java.util.ArrayList;
 
 import tmcit.freedom.System.Answer;
+import tmcit.freedom.System.Main;
 import tmcit.freedom.System.Problem;
 import tmcit.freedom.Util.Pair;
 import tmcit.freedom.Util.PipeType;
 
 public class AnswerData {
-	private static final int[] dirX = {0, 0, -1, 1}, dirY = {-1, 1, 0, 0};
-
+	/*Problem Date*/
 	private static PipeType[][] problemBoard;
 	private static int limI, limL, limX;
 	private static ArrayList<Pair> startPoint;
@@ -44,8 +44,8 @@ public class AnswerData {
 					problemBoard[i][j] = b[i - 1][j - 1];
 					if(b[i - 1][j - 1] == PipeType.STR){
 						for(int k = 0; k < 4; k++){
-							int nextX = j - 1 + dirX[k];
-							int nextY = i - 1 + dirY[k];
+							int nextX = j - 1 + Main.dirX[k];
+							int nextY = i - 1 + Main.dirY[k];
 							int nextB = getRebirth(k);
 							if(nextX < 0 || 30 <= nextX)continue;
 							if(nextY < 0 || 30 <= nextY)continue;
@@ -76,7 +76,7 @@ public class AnswerData {
 		return -1;
 	}
 
-
+	
 	public AnswerData(){
 		this.board = new PipeType[32][32];
 	}
@@ -101,8 +101,8 @@ public class AnswerData {
 
 	public int setNext(int v){
 		if(atB == v)return -1;
-		int nextX = atX + dirX[v];
-		int nextY = atY + dirY[v];
+		int nextX = atX + Main.dirX[v];
+		int nextY = atY + Main.dirY[v];
 		if(board[nextY + 1][nextX + 1] == PipeType.GOL){
 			if(putBoard(atX, atY, PipeType.getType(atB, v) ) == false)return -1;
 			this.score += putPipeNum;

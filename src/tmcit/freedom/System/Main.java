@@ -6,8 +6,11 @@ import tmcit.freedom.UI.MainFrame;
 import tmcit.freedom.Util.IconUtil;
 
 public class Main {
-	final public static String appName = "PIPE M@STER Visualize Application";
-	
+	public static final String appName = "PIPE M@STER Visualize Application";
+
+	public static final int[] dirX = {0, 0, -1, 1};
+	public static final int[] dirY = {-1, 1, 0, 0};
+
 	public Main(){
 		new IconUtil("Parts");
 		this.setToolTip();

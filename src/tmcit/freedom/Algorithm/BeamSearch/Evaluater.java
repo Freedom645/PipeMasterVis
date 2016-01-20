@@ -1,10 +1,9 @@
 package tmcit.freedom.Algorithm.BeamSearch;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
 
+import tmcit.freedom.System.Main;
 import tmcit.freedom.Util.Pair;
 import tmcit.freedom.Util.PipeType;
 
@@ -21,9 +20,6 @@ public class Evaluater {
 	//-100000*N~0
 	private static final double badAreaP = 100000.0; 
 	
-	private static int[] dirX = {0, 0, -1, 1};
-	private static int[] dirY = {-1, 1, 0, 0};
-	
 	/*AnswerData*/
 	private double expoint;
 	private int nowI, nowL, nowX;
@@ -37,7 +33,7 @@ public class Evaluater {
 			this.expoint = -9999996;
 			return;
 		}
-		if(board[atX + dirX[atB] + 1][atY + dirY[atB] + 1] == PipeType.STR){
+		if(board[atX + Main.dirX[atB] + 1][atY + Main.dirY[atB] + 1] == PipeType.STR){
 			////first node only
 			this.expoint += allBoardScore();
 		}
@@ -71,8 +67,8 @@ public class Evaluater {
 				mem[x][y] = true;
 				
 				for(int d = 0;d < 4;d++){
-					int tx = x + dirX[d];
-					int ty = y + dirY[d];
+					int tx = x + Main.dirX[d];
+					int ty = y + Main.dirY[d];
 					if(mem[tx][ty])continue;
 					que.add(new Pair(tx,ty));
 				}
@@ -88,7 +84,7 @@ public class Evaluater {
 		double e = 0;
 		for(int i = 0; i < 4; i++){
 			if(i == atB)continue;
-			PipeType t = this.board[atY + dirY[i] + 1][atX + dirX[i] + 1];
+			PipeType t = this.board[atY + Main.dirY[i] + 1][atX + Main.dirX[i] + 1];
 			if(t == PipeType.EMP)continue;
 			if(t == PipeType.STR || t == PipeType.GOL)e += aroundP[0];
 			else if(t == PipeType.BLO)e += aroundP[1];
@@ -99,21 +95,21 @@ public class Evaluater {
 
 	private double closedPipe(){
 		double e = 0;
-		int x = atX + dirX[atB];
-		int y = atY + dirY[atB];
+		int x = atX + Main.dirX[atB];
+		int y = atY + Main.dirY[atB];
 		///int b = AnswerData.getRebirth(atB);
 		for(int i = 0; i < 4; i++){
 			///if(i == b)continue;
-			int tx = x + dirX[i];
-			int ty = y + dirY[i];
+			int tx = x + Main.dirX[i];
+			int ty = y + Main.dirY[i];
 			if(tx == atX&&ty == atY)continue;
 			if(this.board[ty + 1][tx + 1] != PipeType.EMP)continue;
 //			boolean b1 = true;
 			int pipeNum = 0;
 			for(int j = 0; j < 4; j++){
 				///if(pipeNum >= 3){b1 = false;break;}
-				if(this.board[ty + dirY[j] + 1][tx + dirX[j] + 1] != PipeType.EMP
-						&&this.board[ty + dirY[j] + 1][tx + dirX[j] + 1] != PipeType.GOL)pipeNum++;
+				if(this.board[ty + Main.dirY[j] + 1][tx + Main.dirX[j] + 1] != PipeType.EMP
+						&&this.board[ty + Main.dirY[j] + 1][tx + Main.dirX[j] + 1] != PipeType.GOL)pipeNum++;
 			}
 			if(pipeNum>=3){
 				e -= closedP;
@@ -183,9 +179,9 @@ public class Evaluater {
 			if(memo[x + 1][y + 1] == id)continue;
 			memo[x + 1][y + 1] = id;
 			for(int i = 0; i < 4; i++){
-				if(memo[x + dirX[i] + 1][y + dirY[i] + 1] == id)continue;
-				fastQueueX.push(x + dirX[i]);
-				fastQueueY.push(y + dirY[i]);
+				if(memo[x + Main.dirX[i] + 1][y + Main.dirY[i] + 1] == id)continue;
+				fastQueueX.push(x + Main.dirX[i]);
+				fastQueueY.push(y + Main.dirY[i]);
 			}
 		}
 		id++;

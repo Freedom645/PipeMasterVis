@@ -3,7 +3,7 @@ package tmcit.freedom.Algorithm.BeamSearch;
 public class FastQueue {
 	
 	private int array[];
-	private int l = 0,r = 0;
+	private int l = 0, r = 0;
 	
 	public FastQueue(int size){
 		array = new int[size];
@@ -16,7 +16,7 @@ public class FastQueue {
 		return array[l++];
 	}
 	public int size(){
-		return r-l;
+		return r - l;
 	}
 	public void clear(){
 		l = 0;

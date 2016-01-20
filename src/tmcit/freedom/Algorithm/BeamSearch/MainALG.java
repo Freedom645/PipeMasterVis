@@ -6,10 +6,10 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 import tmcit.freedom.System.AnswerDataComp;
+import tmcit.freedom.System.Main;
 import tmcit.freedom.System.Problem;
 import tmcit.freedom.Util.Pair;
 import tmcit.freedom.Util.PipeType;
-import tmcit.freedom.Util.Third;
 
 
 public class MainALG {
@@ -59,7 +59,7 @@ public class MainALG {
 	}
 	
 	private void runDistance(){
-		Queue<Third> que = new ArrayDeque<Third>();
+		Queue<Pair> que = new ArrayDeque<Pair>();
 		PipeType[][] board = problem.getBoard();
 		int[][] disMemo = new int[32][32];
 		for(int i = 0; i < 32; i++){
@@ -68,22 +68,20 @@ public class MainALG {
 				if(i == 0 || j == 0 || i == 31 || j == 31)continue;
 				disMemo[i][j] = 1024;
 				if(board[i - 1][j - 1] != PipeType.STR && board[i - 1][j - 1] != PipeType.GOL)continue;
-				que.add(new Third(j - 1, i - 1, 0));
+				que.add(new Pair(j - 1, i - 1, 0));
 			}
 		}
-		int[] dirX = {0, 0, -1, 1};
-		int[] dirY = {-1, 1, 0, 0};
 		while(que.isEmpty() == false){
-			Third point = que.poll();
+			Pair point = que.poll();
 			int x = point.p1;
 			int y = point.p2;
 			int cost = point.p3;
 			if(disMemo[y + 1][x + 1] < cost)continue;
 			disMemo[y + 1][x + 1] = cost;
 			for(int i = 0; i < 4; i++){
-				int nextX = x + dirX[i];
-				int nextY = y + dirY[i];
-				que.add(new Third(nextX, nextY, cost + 1));
+				int nextX = x + Main.dirX[i];
+				int nextY = y + Main.dirY[i];
+				que.add(new Pair(nextX, nextY, cost + 1));
 			}
 		}
 		Evaluater.setDistanceSG(disMemo);
@@ -105,8 +103,8 @@ public class MainALG {
 				for(int i = 0; i < 4; i++){
 					AnswerData d = ad.getClone();
 					int bool = d.setNext(i);
-					if(bool == -1)continue;//失�?
-					if(bool == 1){//ゴール
+					if(bool == -1)continue;//False
+					if(bool == 1){//GOAL
 //						System.out.println("GOAL");
 						this.setStartOff(d);
 						continue;

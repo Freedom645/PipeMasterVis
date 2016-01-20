@@ -1,7 +1,8 @@
 package tmcit.freedom.Util;
 
 public class Pair {
-	public int p1, p2, p3;
+	public int p1, p2, p3, p4;
+
 	public Pair(int p1, int p2){
 		this.p1 = p1;
 		this.p2 = p2;
@@ -12,6 +13,14 @@ public class Pair {
 		this.p2 = p2;
 		this.p3 = p3;
 	}
+
+	public Pair(int p1, int p2, int p3, int p4){
+		this.p1 = p1;
+		this.p2 = p2;
+		this.p3 = p3;
+		this.p4 = p4;
+	}
+
 
 	public Pair PairClone(){
 		return new Pair(p1, p2, p3);

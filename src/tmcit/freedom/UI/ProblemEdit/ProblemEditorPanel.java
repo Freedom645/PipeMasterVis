@@ -6,6 +6,7 @@ import java.util.Queue;
 
 import javax.swing.SwingUtilities;
 
+import tmcit.freedom.System.Main;
 import tmcit.freedom.UI.MainPanel;
 import tmcit.freedom.UI.PipePanel;
 import tmcit.freedom.Util.Pair;
@@ -49,8 +50,6 @@ public class ProblemEditorPanel extends MainPanel{
 		}
 	}
 	
-	final private static int[] dirX = {0, 0, -1, 1}; 
-	final private static int[] dirY = {-1, 1, 0, 0}; 
 	public void paintPenki(final int atx, final int aty, PipeType pressType){
 		final PipeType pt = pressType;
 		SwingUtilities.invokeLater(new Runnable(){
@@ -67,7 +66,7 @@ public class ProblemEditorPanel extends MainPanel{
 					pipePanel[y][x].paintPipe(pt);
 
 					for(int i = 0; i < 4; i++){
-						que.add(new Pair(x + dirX[i], y + dirY[i]));
+						que.add(new Pair(x + Main.dirX[i], y + Main.dirY[i]));
 					}
 				}
 				own.repaint();
