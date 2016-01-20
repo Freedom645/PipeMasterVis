@@ -17,6 +17,15 @@ public class AnswerData {
 	private static double limRateIL;
 	private static double limRateI, limRateL;
 
+	/*Ansewr Data*/
+	private double expoint;
+	private int nowI, nowL, nowX;
+	private PipeType[][] board;
+
+	private int atX, atY, atB;
+	private int score;
+	private int putPipeNum;
+
 	public static void setProblem(Problem problem){
 		limI = problem.getLimI() + problem.getLimX();
 		limL = problem.getLimL();
@@ -68,15 +77,6 @@ public class AnswerData {
 	}
 
 
-	/*Ansewr Data*/
-	private double expoint;
-	private int nowI, nowL, nowX;
-	private PipeType[][] board;
-
-	private int atX, atY, atB;
-	private int score;
-	private int putPipeNum;
-	
 	public AnswerData(){
 		this.board = new PipeType[32][32];
 	}
