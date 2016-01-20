@@ -25,6 +25,10 @@ public class AnswerData {
 	private int atX, atY, atB;
 	private int score;
 	private int putPipeNum;
+	
+	public AnswerData(){
+		this.board = new PipeType[32][32];
+	}
 
 	public static void setProblem(Problem problem){
 		limI = problem.getLimI() + problem.getLimX();
@@ -75,11 +79,7 @@ public class AnswerData {
 		if(v == 3)return 2;
 		return -1;
 	}
-
 	
-	public AnswerData(){
-		this.board = new PipeType[32][32];
-	}
 
 	public void initilizeAnswer(){
 		this.score = 0;

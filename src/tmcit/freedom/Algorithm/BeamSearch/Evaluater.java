@@ -28,6 +28,13 @@ public class Evaluater {
 	private int atX, atY, atB;
 	private int putPipeNum;
 	
+	public Evaluater(AnswerData answerData){
+		this.setAnswerData(answerData);
+		this.startEvaluate();
+		
+		answerData.setExp(this.expoint);
+	}
+
 	private void startEvaluate(){
 		if(this.canReach(atX,atY,PipeType.GOL) == false){
 			this.expoint = -9999996;
@@ -159,11 +166,11 @@ public class Evaluater {
 	private static long[][] memo = new long[32][32];
 	private static long id = 1;
 	
-	private boolean canReach(int sx,int sy,PipeType target){
-		if(id==1){
+	private boolean canReach(int sx, int sy, PipeType target){
+		if(id == 1){
 			////memo initialize
-			for(int i = 0;i < 32;i++)
-				for(int j = 0;j < 32;j++)memo[i][j] = 0;
+			for(int i = 0; i < 32; i++)
+				for(int j = 0; j < 32; j++)memo[i][j] = 0;
 		}
 		////BFS O(32*32)
 		fastQueueX.clear();
@@ -171,7 +178,7 @@ public class Evaluater {
 		fastQueueX.push(sx);
 		fastQueueY.push(sy);
 		boolean result = false;
-		while(fastQueueX.size()!=0){
+		while(fastQueueX.size() != 0){
 			int x = fastQueueX.pop();
 			int y = fastQueueY.pop();
 			if(this.board[y + 1][x + 1] == target){result = true;break;}
@@ -186,13 +193,6 @@ public class Evaluater {
 		}
 		id++;
 		return result;
-	}
-
-	public Evaluater(AnswerData answerData){
-		this.setAnswerData(answerData);
-		this.startEvaluate();
-		
-		answerData.setExp(this.expoint);
 	}
 	
 	private void setAnswerData(AnswerData answerData){
